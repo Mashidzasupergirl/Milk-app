@@ -11,7 +11,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #ffc8c8;
+  background-color: #ffdede;
 }
 .App {
   text-align: center;
@@ -44,5 +44,29 @@ body {
 }
 .cart input {
   display: block;
+  margin-top: 0.5rem;
+}
+.product-gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+.product-card {
+
+  border: rgb(133, 133, 133) solid 2px;
+  border-radius: 15px;
+  margin: 0.5rem;
+  background-color: #ffffff;
+  width: 20rem;
+  padding: 1rem 2rem;
+}
+.product-card img {
+/* margin-bottom: 1rem; */
+
+}
+.product-card p{
   margin-top: 0.5rem;
 }
