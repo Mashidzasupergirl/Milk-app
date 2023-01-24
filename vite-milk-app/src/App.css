@@ -6,6 +6,7 @@
   box-sizing: border-box;
   font-family: 'Rubik', sans-serif;
 }
+
 ul li {
   margin: 0;
   padding: 0;
@@ -19,6 +20,7 @@ a {
   cursor: pointer;
   color: #ffffff;
 }
+
 body {
   margin: 0;
   place-items: center;
@@ -26,19 +28,23 @@ body {
   min-height: 100vh;
   background-color: #ffdede;
 }
+
 .App {
   text-align: center;
 }
+
 .App nav {
   background-color: #ffffff;
   padding: 0.5rem 1rem;
 }
+
 .menu {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
+
 .App nav a {
   color: #ff9797;
   text-decoration: none;
@@ -47,18 +53,22 @@ body {
   font-weight: 600;
   font-size: 20px;
 }
+
 .cart {
   text-align: left;
   margin: 1rem 4rem;
 }
+
 .cart label {
   display: block;
   margin-bottom: 1rem;
 }
+
 .cart input {
   display: block;
   margin-top: 0.5rem;
 }
+
 .product-gallery {
   display: flex;
   flex-direction: row;
@@ -67,6 +77,7 @@ body {
   justify-content: center;
   padding: 0.5rem;
 }
+
 .product-card {
   border: rgb(133, 133, 133) solid 2px;
   border-radius: 15px;
@@ -75,34 +86,79 @@ body {
   width: 20rem;
   padding: 1rem 2rem;
 }
+
 .product-card img {
-/* margin-bottom: 1rem; */
+  /*  */
 
 }
-.product-card p{
+
+.product-card p {
   margin-top: 0.5rem;
 }
+
 .Cashew {
   background-color: rgb(209, 146, 130);
 }
+
 .Pea {
   background-color: rgb(228, 255, 216);
 }
 
+.Walnut {
+  background-color: rgb(255, 188, 143);
+}
+
+.Rice {
+  background-color: rgb(230, 255, 253);
+}
+
+.Coconut {
+  background-color: rgb(233, 233, 233);
+}
+
+.Soy {
+  background-color: rgb(255, 250, 203);
+}
+
+.Hemp {
+  background-color: rgb(175, 250, 255);
+}
+
+.Almond {
+  background-color: rgb(175, 250, 255);
+}
+
+.Cashew {
+  background-color: rgb(255, 209, 244);
+}
+
+.Oat {
+  background-color: rgb(255, 254, 186);
+}
+
+.Macadamia {
+  background-color: rgb(228, 195, 195);
+}
+.Whole {
+  background-color: #ffd3d3;
+}
 .pagination {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
+
 .page-item {
-  color:#ff9797;
+  color: #ff9797;
   font-size: 1.7rem;
 }
+
 .page-link {
   color: #ff9797;
   margin: 0 2rem;
 }
+
 .page-link:hover {
   text-shadow: -1px 0px 2px rgb(255, 156, 156);
   cursor: pointer;
