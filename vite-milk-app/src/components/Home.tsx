@@ -1,19 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import oneProduct from '../interfaces/one-product';
-import ProductCard from './ProductCard'
+import ProductCard from './ProductCard';
+import paginationInterface from '../interfaces/pagination-interface';
+import Pagination from './Pagination';
 
 function Home() {
     const [data, setData] = useState<oneProduct[]>([]);
+    const [currentPage, setCurrentPage] = useState<paginationInterface["currentPage"]>(1);
+    const [recordsPerPage] = useState(10);
+    const [nPages, setNPages] = useState<paginationInterface["nPages"]>(0);
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
 
     useEffect(() => {
       setData(mockData);
     }, [])
 
-    return <div className='product-gallery'>
-        {
-            data.map(oneProduct => <ProductCard name={oneProduct.name} type={oneProduct.type} storage={oneProduct.storage} id={oneProduct.id}></ProductCard>)
-        }
+    useEffect(() => {
+        setNPages(Math.ceil((mockData.length / recordsPerPage)));
+      }, [])
+
+      const currentPageData = data.slice(indexOfFirstRecord, indexOfLastRecord);
+
+
+      const paginationProps = {
+        currentPage: currentPage,
+        nPages: nPages,
+        setCurrentPage: setCurrentPage
+      }
+
+    return <><div className='product-gallery'>
+        {currentPageData.map(oneProduct => <ProductCard name={oneProduct.name} type={oneProduct.type} storage={oneProduct.storage} id={oneProduct.id}></ProductCard>)}
     </div>
+    <Pagination {...paginationProps} />
+    </>
 }
 
 export default Home;
