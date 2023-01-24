@@ -1,6 +1,6 @@
 function Home() {
     return <div>
-        <h1>Number Converter</h1>
+        <h1>THE MILK STORE</h1>
     </div>
 }
 

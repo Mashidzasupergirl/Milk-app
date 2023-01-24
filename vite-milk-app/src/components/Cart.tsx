@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function Converter() {
+function Cart() {
     const [value, setValue] = useState<number>();
     const [origin, setOrigin] = useState<string>();
     const isDisabled = (base: string) => (origin !== undefined && origin !== base);
@@ -19,7 +19,7 @@ function Converter() {
             }
         }
 
-    return <div className="Converter">
+    return <div className="cart">
         <label>
             Decimal:
             <input type="string" 
@@ -47,4 +47,4 @@ function Converter() {
     </div>
 }
 
-export default Converter;
+export default Cart;

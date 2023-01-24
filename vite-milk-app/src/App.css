@@ -1,36 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Rubik', sans-serif;
+}
+body {
+  margin: 0;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #ffc8c8;
 }
 .App {
   text-align: center;
 }
-
 .App nav {
-  display: flex;
-  justify-content: space-between;
-  background-color: #333333;
-  color: #ffffff;
+  background-color: #ffffff;
   padding: 0.5rem 1rem;
 }
-
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 .App nav a {
-  color: #ffffff;
+  color: #ff9797;
   text-decoration: none;
   margin-left: 1rem;
   margin-right: 1rem;
+  font-weight: 600;
+  font-size: 20px;
 }
-
-.Converter {
+.cart {
   text-align: left;
   margin: 1rem 4rem;
 }
-
-.Converter label {
+.cart label {
   display: block;
   margin-bottom: 1rem;
 }
-
-.Converter input {
+.cart input {
   display: block;
   margin-top: 0.5rem;
 }
