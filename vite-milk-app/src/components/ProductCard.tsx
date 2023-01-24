@@ -6,7 +6,7 @@ const ProductCard = (data: oneProduct) => {
     <div className='product-card' >
         <img src="./public/milk.png" alt="Milk pic" width="200" height="200"></img>
         <p>{data.name}</p>
-        <p>{data.type}</p>
+        <p>{data.type} <span className={data.type}>{data.type}</span></p>
         {/* <p>storage {data.storage}</p>
         <p>id {data.id}</p> */}
     </div>

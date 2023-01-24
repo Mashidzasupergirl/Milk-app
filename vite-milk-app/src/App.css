@@ -82,6 +82,12 @@ body {
 .product-card p{
   margin-top: 0.5rem;
 }
+.Cashew {
+  background-color: rgb(209, 146, 130);
+}
+.Pea {
+  background-color: rgb(228, 255, 216);
+}
 
 .pagination {
   display: flex;
