@@ -31,6 +31,10 @@ body {
 
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .App nav {
@@ -67,6 +71,12 @@ body {
 .cart input {
   display: block;
   margin-top: 0.5rem;
+}
+
+.search-and-filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .product-gallery {

@@ -3,36 +3,47 @@ import oneProduct from '../interfaces/one-product';
 import ProductCard from './ProductCard';
 import paginationInterface from '../interfaces/pagination-interface';
 import Pagination from './Pagination';
+import Filter from './Filter';
+import SearchBar from './SearchBar';
+
+
 
 function Home() {
     const [data, setData] = useState<oneProduct[]>([]);
     const [currentPage, setCurrentPage] = useState<paginationInterface["currentPage"]>(1);
-    const [recordsPerPage] = useState(10);
+    const [recordsPerPage] = useState(8);
     const [nPages, setNPages] = useState<paginationInterface["nPages"]>(0);
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
 
     useEffect(() => {
-      setData(mockData);
+        setData(mockData);
     }, [])
 
     useEffect(() => {
         setNPages(Math.ceil((mockData.length / recordsPerPage)));
-      }, [])
+    }, [])
 
-      const currentPageData = data.slice(indexOfFirstRecord, indexOfLastRecord);
+    const currentPageData = data.slice(indexOfFirstRecord, indexOfLastRecord);
 
 
-      const paginationProps = {
+    const paginationProps = {
         currentPage: currentPage,
         nPages: nPages,
         setCurrentPage: setCurrentPage
-      }
+    }
 
-    return <><div className='product-gallery'>
-        {currentPageData.map(oneProduct => <ProductCard name={oneProduct.name} type={oneProduct.type} storage={oneProduct.storage} id={oneProduct.id}></ProductCard>)}
-    </div>
-    <Pagination {...paginationProps} />
+    return <>
+        <div className='search-and-filter'>
+            <SearchBar {...data}></SearchBar>
+            <Filter {...data}></Filter>
+        </div>
+
+        <div className='product-gallery'>
+
+            {currentPageData.map(oneProduct => <ProductCard name={oneProduct.name} type={oneProduct.type} storage={oneProduct.storage} id={oneProduct.id}></ProductCard>)}
+        </div>
+        <Pagination {...paginationProps} />
     </>
 }
 
