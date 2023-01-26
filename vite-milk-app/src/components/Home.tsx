@@ -5,45 +5,47 @@ import paginationInterface from '../interfaces/pagination-interface';
 import Pagination from './Pagination';
 import Filter from './Filter';
 import SearchBar from './SearchBar';
+import ProductGallery from './ProductGallery';
 
 
 
 function Home() {
     const [data, setData] = useState<oneProduct[]>([]);
-    const [currentPage, setCurrentPage] = useState<paginationInterface["currentPage"]>(1);
-    const [recordsPerPage] = useState(8);
-    const [nPages, setNPages] = useState<paginationInterface["nPages"]>(0);
-    const indexOfLastRecord = currentPage * recordsPerPage;
-    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    // const [currentPage, setCurrentPage] = useState<paginationInterface["currentPage"]>(1);
+    // const [recordsPerPage] = useState(8);
+    // const [nPages, setNPages] = useState<paginationInterface["nPages"]>(0);
+    // const indexOfLastRecord = currentPage * recordsPerPage;
+    // const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
 
     useEffect(() => {
         setData(mockData);
     }, [])
 
-    useEffect(() => {
-        setNPages(Math.ceil((mockData.length / recordsPerPage)));
-    }, [])
+    // useEffect(() => {
+    //     setNPages(Math.ceil((mockData.length / recordsPerPage)));
+    // }, [])
 
-    const currentPageData = data.slice(indexOfFirstRecord, indexOfLastRecord);
+    // const currentPageData = data.slice(indexOfFirstRecord, indexOfLastRecord);
 
 
-    const paginationProps = {
-        currentPage: currentPage,
-        nPages: nPages,
-        setCurrentPage: setCurrentPage
-    }
+    // const paginationProps = {
+    //     currentPage: currentPage,
+    //     nPages: nPages,
+    //     setCurrentPage: setCurrentPage
+    // }
 
     return <>
         <div className='search-and-filter'>
             <SearchBar {...data}></SearchBar>
             <Filter {...data}></Filter>
         </div>
+        {/* <ProductGallery {...currentPageData}></ProductGallery> */}
 
-        <div className='product-gallery'>
-
+        {/* <div className='product-gallery'>
             {currentPageData.map((oneProduct, i) => <ProductCard key={i} name={oneProduct.name} type={oneProduct.type} storage={oneProduct.storage} id={oneProduct.id}></ProductCard>)}
-        </div>
-        <Pagination {...paginationProps} />
+        </div> */}
+
+        {/* <Pagination {...paginationProps} /> */}
     </>
 }
 

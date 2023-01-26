@@ -1,27 +1,47 @@
 import React, { useState, useRef, useEffect } from 'react'
 import oneProduct from '../interfaces/one-product'
+import paginationInterface from '../interfaces/pagination-interface';
+import Pagination from './Pagination';
+import ProductCard from './ProductCard';
 
 const SearchBar = (props: Array<oneProduct>) => {
     const [allData, setAllData] = useState<oneProduct[]>([]);
     const [filteredData, setFilteredData] = useState<oneProduct[]>([]);
-    const [wordEntered, setWordEntered] = useState<string>("")
+    const [wordEntered, setWordEntered] = useState<string>("");
+    const [isRendered, setIsRendered] = useState<boolean>(false);
+    const [currentPage, setCurrentPage] = useState<paginationInterface["currentPage"]>(1);
+    const [recordsPerPage] = useState(8);
+    const [nPages, setNPages] = useState<paginationInterface["nPages"]>(0);
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
 
-    // console.log(!!Object.values(props).length, '1')
-    // console.log(Object.values(props), '2')
+    useEffect(() => {
+        setNPages(Math.ceil((filteredData.length / recordsPerPage)));
+    }, [])
+
+    const currentPageData = filteredData.slice(indexOfFirstRecord, indexOfLastRecord);
+
+
+    const paginationProps = {
+    currentPage: currentPage,
+    nPages: nPages,
+    setCurrentPage: setCurrentPage
+}
 
     useEffect(() => {
         if (!allData.length) {
+            setIsRendered(false)
             setAllData(Object.values(props));
-            console.log('first')
+            setIsRendered(true)
         }
-        console.log(allData, 'allData')
     }, [allData])
 
     useEffect(() => {
         if (!!allData) {
+            setIsRendered(false)
             setFilteredData(allData);
+            setIsRendered(true)
         }
-        console.log(filteredData, 'filterdDATA')
     }, [])
 
 
@@ -41,19 +61,16 @@ const SearchBar = (props: Array<oneProduct>) => {
         if (!searchWord) return setFilteredData(allData)
 
         const newFilter: oneProduct[] = filterItems(allData, wordEntered)
+        setIsRendered(false)
         setFilteredData(newFilter)
-        console.log(filteredData, 'filtered')
+        setIsRendered(true)
     }
-
-
 
     const clearInput = (): void => {
         setFilteredData([])
         setWordEntered("")
         inputRef.current?.focus()
     }
-
-
 
     return (
         <div>
@@ -71,13 +88,11 @@ const SearchBar = (props: Array<oneProduct>) => {
                     )}
                 </div>
             </div>
-            {filteredData.length !== 0 && (
-                <div>
-                    {filteredData.map(({ name, type }, key) => (
-                        <p key={key} >
-                            {name + ' ' + type}
-                        </p>
-                    ))}
+            
+            {isRendered && (
+                    <div className='product-gallery'>
+                    {currentPageData && currentPageData.map((oneProduct, i) => <ProductCard key={i} name={oneProduct.name} type={oneProduct.type} storage={oneProduct.storage} id={oneProduct.id}></ProductCard>)}
+                    <Pagination {...paginationProps} />
                 </div>
             )}
         </div>
