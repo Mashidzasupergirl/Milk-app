@@ -4,11 +4,12 @@ import paginationInterface from '../interfaces/pagination-interface';
 import Pagination from './Pagination';
 import ProductCard from './ProductCard';
 
-const SearchBar = (props: Array<oneProduct>) => {
+const SearchBarAndProducts = (props: Array<oneProduct>) => {
     const [allData, setAllData] = useState<oneProduct[]>([]);
     const [filteredData, setFilteredData] = useState<oneProduct[]>([]);
     const [wordEntered, setWordEntered] = useState<string>("");
     const [isRendered, setIsRendered] = useState<boolean>(false);
+    
     const [currentPage, setCurrentPage] = useState<paginationInterface["currentPage"]>(1);
     const [recordsPerPage] = useState(8);
     const [nPages, setNPages] = useState<paginationInterface["nPages"]>(0);
@@ -99,4 +100,4 @@ const SearchBar = (props: Array<oneProduct>) => {
     )
 }
 
-export default SearchBar
+export default SearchBarAndProducts

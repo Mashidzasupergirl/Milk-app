@@ -1,51 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import oneProduct from '../interfaces/one-product';
-import ProductCard from './ProductCard';
-import paginationInterface from '../interfaces/pagination-interface';
-import Pagination from './Pagination';
-import Filter from './Filter';
-import SearchBar from './SearchBar';
-import ProductGallery from './ProductGallery';
+import SearchBarAndProducts from './SearchBarAndProducts';
 
 
 
 function Home() {
     const [data, setData] = useState<oneProduct[]>([]);
-    // const [currentPage, setCurrentPage] = useState<paginationInterface["currentPage"]>(1);
-    // const [recordsPerPage] = useState(8);
-    // const [nPages, setNPages] = useState<paginationInterface["nPages"]>(0);
-    // const indexOfLastRecord = currentPage * recordsPerPage;
-    // const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    const [isRendered, setIsRendered] = useState<boolean>(false);
 
     useEffect(() => {
+        setIsRendered(false)
         setData(mockData);
+        setIsRendered(true)
     }, [])
 
-    // useEffect(() => {
-    //     setNPages(Math.ceil((mockData.length / recordsPerPage)));
-    // }, [])
-
-    // const currentPageData = data.slice(indexOfFirstRecord, indexOfLastRecord);
-
-
-    // const paginationProps = {
-    //     currentPage: currentPage,
-    //     nPages: nPages,
-    //     setCurrentPage: setCurrentPage
-    // }
-
     return <>
-        <div className='search-and-filter'>
-            <SearchBar {...data}></SearchBar>
-            <Filter {...data}></Filter>
-        </div>
-        {/* <ProductGallery {...currentPageData}></ProductGallery> */}
-
-        {/* <div className='product-gallery'>
-            {currentPageData.map((oneProduct, i) => <ProductCard key={i} name={oneProduct.name} type={oneProduct.type} storage={oneProduct.storage} id={oneProduct.id}></ProductCard>)}
-        </div> */}
-
-        {/* <Pagination {...paginationProps} /> */}
+    <div className='search-and-products'>
+    {isRendered && <SearchBarAndProducts {...data}></SearchBarAndProducts>}
+    </div>   
     </>
 }
 

@@ -73,12 +73,6 @@ body {
   margin-top: 0.5rem;
 }
 
-.search-and-filter {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
 .product-gallery {
   display: flex;
   flex-direction: row;
@@ -173,4 +167,11 @@ body {
   text-shadow: -1px 0px 2px rgb(255, 156, 156);
   cursor: pointer;
 }
-
+.search-and-products {
+text-align: center;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: center;
+height: 100%;
+}
