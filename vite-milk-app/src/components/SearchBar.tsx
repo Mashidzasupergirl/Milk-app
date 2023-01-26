@@ -1,33 +1,51 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import oneProduct from '../interfaces/one-product'
 
 const SearchBar = (props: Array<oneProduct>) => {
-    const [filteredData, setFilteredData] = useState<oneProduct[]>(props);
+    const [allData, setAllData] = useState<oneProduct[]>([]);
+    const [filteredData, setFilteredData] = useState<oneProduct[]>([]);
     const [wordEntered, setWordEntered] = useState<string>("")
-    // console.log(props)
+
+    // console.log(!!Object.values(props).length, '1')
+    // console.log(Object.values(props), '2')
+
+    useEffect(() => {
+        if (!allData.length) {
+            setAllData(Object.values(props));
+            console.log('first')
+        }
+        console.log(allData, 'allData')
+    }, [allData])
+
+    useEffect(() => {
+        if (!!allData) {
+            setFilteredData(allData);
+        }
+        console.log(filteredData, 'filterdDATA')
+    }, [])
+
 
     const inputRef: React.RefObject<HTMLInputElement> =
         useRef<HTMLInputElement>(null)
     window.addEventListener("load", () => inputRef.current?.focus())
+
+    function filterItems(arr: oneProduct[], query: string) {
+        return arr.filter((el) => el.name.toLowerCase().includes(query.toLowerCase()));
+    }
 
     const handleFilter = ({
         target,
     }: React.ChangeEvent<HTMLInputElement>): void => {
         const searchWord: string = target.value.toLowerCase()
         setWordEntered(searchWord)
+        if (!searchWord) return setFilteredData(allData)
 
-        // const newFilter : oneProduct[] = props.filter(({ name }): boolean =>
-        //     name.toLowerCase().includes(searchWord)
-        // )
-        const newFilter: oneProduct[] = filterItems(props, wordEntered)
-        if (!searchWord) return setFilteredData([])
+        const newFilter: oneProduct[] = filterItems(allData, wordEntered)
         setFilteredData(newFilter)
-        console.log(filteredData)
+        console.log(filteredData, 'filtered')
     }
 
-    function filterItems(arr: oneProduct[], query: string) {
-        return arr.filter((el) => el.name.toLowerCase().includes(query.toLowerCase()));
-    }
+
 
     const clearInput = (): void => {
         setFilteredData([])
@@ -53,20 +71,15 @@ const SearchBar = (props: Array<oneProduct>) => {
                     )}
                 </div>
             </div>
-            {/* {filteredData.length !== 0 && (
+            {filteredData.length !== 0 && (
                 <div>
-                    {filteredData.map(({ link, title }, key) => (
-              <a
-                href={link}
-                key={key}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {title}
-              </a>
-            ))}
+                    {filteredData.map(({ name, type }, key) => (
+                        <p key={key} >
+                            {name + ' ' + type}
+                        </p>
+                    ))}
                 </div>
-            )} */}
+            )}
         </div>
     )
 }

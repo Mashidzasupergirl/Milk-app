@@ -41,7 +41,7 @@ function Home() {
 
         <div className='product-gallery'>
 
-            {currentPageData.map(oneProduct => <ProductCard name={oneProduct.name} type={oneProduct.type} storage={oneProduct.storage} id={oneProduct.id}></ProductCard>)}
+            {currentPageData.map((oneProduct, i) => <ProductCard key={i} name={oneProduct.name} type={oneProduct.type} storage={oneProduct.storage} id={oneProduct.id}></ProductCard>)}
         </div>
         <Pagination {...paginationProps} />
     </>
